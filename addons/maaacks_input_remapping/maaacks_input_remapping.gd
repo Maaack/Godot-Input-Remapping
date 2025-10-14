@@ -2,12 +2,13 @@
 class_name MaaacksInputRemappingPlugin
 extends EditorPlugin
 
-const APIClient = preload("res://addons/maaacks_input_remapping/utilities/api_client.gd")
-const DownloadAndExtract = preload("res://addons/maaacks_input_remapping/utilities/download_and_extract.gd")
-const CopyAndEdit = preload("res://addons/maaacks_input_remapping/installer/copy_and_edit_files.gd")
-
+const PLUGIN_PATH = "res://addons/maaacks_input_remapping/"
 const PLUGIN_NAME = "Maaack's Input Remapping"
 const PROJECT_SETTINGS_PATH = "maaacks_input_remapping/"
+
+const APIClient = preload(PLUGIN_PATH + "utilities/api_client.gd")
+const DownloadAndExtract = preload(PLUGIN_PATH + "utilities/download_and_extract.gd")
+const CopyAndEdit = preload(PLUGIN_PATH + "installer/copy_and_edit_files.gd")
 
 const EXAMPLES_RELATIVE_PATH = "examples/"
 const MAIN_SCENE_RELATIVE_PATH = "scenes/input_remapping/input_options_menu.tscn"
@@ -28,13 +29,13 @@ static func get_plugin_name() -> String:
 static func get_settings_path() -> String:
 	return PROJECT_SETTINGS_PATH
 
-func get_plugin_path() -> String:
-	return get_script().resource_path.get_base_dir() + "/"
+static func get_plugin_path() -> String:
+	return PLUGIN_PATH
 
-func get_plugin_examples_path() -> String:
+static func get_plugin_examples_path() -> String:
 	return get_plugin_path() + EXAMPLES_RELATIVE_PATH
 
-func get_copy_path() -> String:
+static func get_copy_path() -> String:
 	var copy_path = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path", get_plugin_examples_path())
 	if not copy_path.ends_with("/"):
 		copy_path += "/"
