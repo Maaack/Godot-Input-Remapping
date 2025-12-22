@@ -93,7 +93,11 @@ func _replace_action(action_name : String, readable_input_name : String = "") ->
 func _on_button_pressed(action_name : String, action_group : int) -> void:
 	editing_action_name = action_name
 	editing_action_group = action_group
-	_replace_action(action_name)
+	var button = _get_button_by_action(action_name, action_group)
+	var readable_input_name : String
+	if button and button in button_readable_input_map:
+		readable_input_name = button_readable_input_map[button]
+	_replace_action(action_name, readable_input_name)
 
 func _new_action_box() -> Node:
 	var new_action_box : Node = %ActionBoxContainer.duplicate()
@@ -135,10 +139,10 @@ func _get_button_by_action(action_name : String, action_group : int) -> Button:
 		return action_button_map[key_string]
 	return null
 
-func _update_next_button_disabled_state(action_name : String, action_group : int) -> void:
-	var button = _get_button_by_action(action_name, action_group)
+func _update_next_button_disabled_state(action_name : String, action_group : int, disabled: bool = false) -> void:
+	var button = _get_button_by_action(action_name, action_group + 1)
 	if button:
-		button.disabled = false
+		button.disabled = disabled
 
 func _update_assigned_inputs_and_button(action_name : String, action_group : int, input_event : InputEvent) -> void:
 	var new_readable_input_name = InputEventHelper.get_text(input_event)
@@ -313,9 +317,11 @@ func _refresh_ui_list_button_content() -> void:
 		var group_iter : int = 0
 		for input_event in input_events:
 			_update_assigned_inputs_and_button(action_name, group_iter, input_event)
+			_update_next_button_disabled_state(action_name, group_iter)
 			group_iter += 1
 		while group_iter < action_groups:
 			_clear_button(action_name, group_iter)
+			_update_next_button_disabled_state(action_name, group_iter, true)
 			group_iter += 1
 
 func _set_action_box_container_size() -> void:
