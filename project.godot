@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Input Remapping"
-run/main_scene="res://scenes/input_remapping/input_options_menu.tscn"
+run/main_scene="uid://cq431gyaarnak"
 config/features=PackedStringArray("4.5")
 config/icon="res://icon.png"
 
