@@ -15,3 +15,5 @@ dest_files=["res://addons/maaacks_input_remapping/base/translations/menus_transl
 
 compress=true
 delimiter=0
+unescape_keys=false
+unescape_translations=true
