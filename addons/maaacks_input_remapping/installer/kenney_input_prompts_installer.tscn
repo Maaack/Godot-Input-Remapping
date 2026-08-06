@@ -17,7 +17,6 @@ zip_file_path = "res://kenney_input-prompts.zip"
 metadata/_custom_type_script = "uid://bqu3bc0tttrfk"
 
 [node name="SkipInstallationDialog" type="ConfirmationDialog" parent="." unique_id=557941469]
-oversampling_override = 1.0
 title = "Skip Installation?"
 initial_position = 2
 size = Vector2i(682, 160)

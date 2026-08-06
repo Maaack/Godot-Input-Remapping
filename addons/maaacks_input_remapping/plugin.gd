@@ -55,15 +55,18 @@ func open_setup_complete_dialog(_target_path : String) -> void:
 	setup_complete_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(setup_complete_instance))
 	add_child(setup_complete_instance)
 
-func _delayed_open_setup_complete_dialog(target_path : String) -> void:
+func _delayed_call_with_path(callable : Callable, target_path : String) -> void:
 	var timer: Timer = Timer.new()
-	var callable := func():
+	var timer_callable := func():
 		timer.stop()
-		open_setup_complete_dialog(target_path)
+		callable.call(target_path)
 		timer.queue_free()
-	timer.timeout.connect(callable)
+	timer.timeout.connect(timer_callable)
 	add_child(timer)
 	timer.start(WINDOW_OPEN_DELAY)
+
+func _delayed_open_setup_complete_dialog(target_path : String) -> void:
+	_delayed_call_with_path(open_setup_complete_dialog, target_path)
 
 func _open_play_opening_confirmation_dialog(target_path : String) -> void:
 	var play_confirmation_scene : PackedScene = load(get_plugin_path() + "installer/play_opening_confirmation_dialog.tscn")
@@ -95,7 +98,7 @@ func _run_opening_scene(target_path : String) -> void:
 	var callable := func() -> void:
 		if EditorInterface.is_playing_scene(): return
 		timer.stop()
-		_open_delete_examples_confirmation_dialog(target_path)
+		_delayed_call_with_path(_open_delete_examples_confirmation_dialog, target_path)
 		timer.queue_free()
 	timer.timeout.connect(callable)
 	add_child(timer)
@@ -156,6 +159,19 @@ func _on_completed_copy_to_directory(target_path : String) -> void:
 	_copy_override_file()
 	_open_play_opening_confirmation_dialog(target_path)
 
+func are_examples_deleted() -> bool:
+	var dir := DirAccess.open("res://")
+	return not dir.dir_exists(get_plugin_examples_path())
+
+func is_partially_installed() -> bool:
+	var copy_path : String = ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "copy_path")
+	if copy_path.is_empty():
+		# Installation not started
+		return false
+	if not are_examples_deleted():
+		return true
+	return false
+
 func open_input_icons_dialog() -> void:
 	var input_icons_scene : PackedScene = load(get_plugin_path() + "installer/kenney_input_prompts_installer.tscn")
 	var input_icons_instance = input_icons_scene.instantiate()
@@ -197,6 +213,13 @@ func open_update_plugin() -> void:
 	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
 	add_child(update_plugin_instance)
 
+func _open_continue_setup_dialog() -> void:
+	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/continue_setup_confirmation_dialog.tscn")
+	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
+	confirmation_instance.confirmed.connect(open_setup_wizard)
+	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
+	add_child(confirmation_instance)
+
 func open_setup_wizard() -> void:
 	var setup_wizard_scene : PackedScene = load(get_plugin_path() + "installer/setup_wizard.tscn")
 	var setup_wizard_instance : Node = setup_wizard_scene.instantiate()
@@ -212,12 +235,14 @@ func _remove_update_plugin_tool_option() -> void:
 	update_plugin_tool_string = ""
 
 func _show_plugin_dialogues() -> void:
-	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard") :
-		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard") :
-			return
-	_open_confirmation_dialog()
-	ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", true)
-	ProjectSettings.save()
+	if not ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", false):
+		_open_confirmation_dialog()
+		ProjectSettings.set_setting(PROJECT_SETTINGS_PATH + "disable_install_wizard", true)
+		ProjectSettings.save()
+		return
+	if is_partially_installed():
+		_open_continue_setup_dialog()
+		return
 
 func _resave_if_recently_opened() -> void:
 	if Engine.get_physics_frames() < MAX_PHYSICS_FRAMES_FROM_START:
