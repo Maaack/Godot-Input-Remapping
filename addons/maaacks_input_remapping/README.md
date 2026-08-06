@@ -1,5 +1,5 @@
 # Godot Input Remapping
-For Godot 4.5 (4.3+ compatible)
+For Godot 4.7 (4.3+ compatible)
 
 This plugin has an input remapping menu that aims to be easy to customize and persists settings in a user's config file.
 
@@ -49,14 +49,14 @@ Users that want additional features can try [Maaack's Game Template](https://git
 
 ## Installation
 
-### Godot Asset Library
+### Godot Asset Store & Library
 This package is available as a plugin, meaning it can be added to an existing project. 
 
 ![Package Icon](/addons/maaacks_input_remapping/media/input_remapping-icon-black-transparent-256x256.png)  
 
 When editing an existing project:
 
-1.  Go to the `AssetLib` tab.
+1.  Go to the `Asset Store` tab.
 2.  Search for "Maaack's Input Remapping".
 3.  Click on the result to open the plugin details.
 4.  Click to Download.
@@ -66,7 +66,7 @@ When editing an existing project:
 8.  Enable the plugin from the Project Settings > Plugins tab.  
     If it's enabled for the first time,
     1.  A dialogue window will appear asking to copy the example scenes out of `addons/`.
-9.  Continue with the [Existing Project Instructions](/addons/maaacks_input_remapping/docs/ExistingProject.md)  
+9.  Continue with the [Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md)
 
 
 ### GitHub
@@ -79,15 +79,15 @@ When editing an existing project:
 5.  Enable the plugin from the Project Settings > Plugins tab.  
     If it's enabled for the first time,
     1.  A dialogue window will appear asking to copy the example scenes out of `addons/`.
-6.  Continue with the [Existing Project Instructions](/addons/maaacks_input_remapping/docs/ExistingProject.md) 
+6.  Continue with the [Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md)
 
 
 ## Usage
 
-### Existing Project
+[Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md) is done through the _Setup Wizard_ at `Project > Tools > Run Maaack's Input Remapping Setup...`.
 
-[Existing Project Instructions](/addons/maaacks_input_remapping/docs/ExistingProject.md)  
-   
+As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
+  
 ### More Documentation
 
 [Input Icon Mapping](/addons/maaacks_input_remapping/docs/InputIconMapping.md)  
@@ -99,10 +99,10 @@ When editing an existing project:
 
 ## Featured Games
 
-| Baking Godium | Spud Customs | Rent Seek Kill |  
+| HeartFix Express | Baking Godium | Rent Seek Kill |  
 | :-------:| :-------: | :-------: |
-| ![Baking Godium](/addons/maaacks_input_remapping/media/thumbnail-game-baking-godium.png) | ![Spud Customs](/addons/maaacks_input_remapping/media/thumbnail-game-spud-customs.png) | ![Rent-Seek-Kill](/addons/maaacks_input_remapping/media/thumbnail-game-rent-seek-kill.png) |
-|  [Play on itch.io](https://maaack.itch.io/baking-godium) | [Find on Steam](https://store.steampowered.com/app/3291880/Spud_Customs/) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![HeartFix Express](/addons/maaacks_input_remapping/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_input_remapping/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_input_remapping/media/thumbnail-game-rent-seek-kill.png) |
+|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
 
 
 [All Shared Games](/addons/maaacks_input_remapping/docs/GamesMade.md)  
