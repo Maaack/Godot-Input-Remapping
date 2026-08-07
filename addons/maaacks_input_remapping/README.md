@@ -116,4 +116,5 @@ Join the [Discord server](https://discord.gg/AyZrJh5AMp ) and share your work wi
 ## Links
 [Attribution](/addons/maaacks_input_remapping/ATTRIBUTION.md)  
 [License](/addons/maaacks_input_remapping/LICENSE.txt)  
-[Godot Asset Library - Plugin](https://godotengine.org/asset-library/asset/4051) 
+[Godot Asset Store](https://store.godotengine.org/asset/maaack/maaacks-input-remapping/)  
+[Godot Asset Library](https://godotengine.org/asset-library/asset/4051) 
