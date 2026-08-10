@@ -1,7 +1,10 @@
 # Godot Input Remapping
-For Godot 4.7 (4.3+ compatible)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Input-Remapping) ![GitHub Release Date](https://img.shields.io/github/release-date/Maaack/Godot-Input-Remapping)
+[![Discord members](https://img.shields.io/discord/772191827570720798.svg?label=&logo=discord&logoColor=ffffff)](https://discord.gg/AyZrJh5AMp)  
 
 This plugin has an input remapping menu that aims to be easy to customize and persists settings in a user's config file.
+
+For Godot 4.7 (4.3+ compatible)
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template)  
 _Example is of [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template), which includes additional features._
@@ -11,14 +14,12 @@ _Example is of [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Tem
 ### Videos
 
 [![Quick Intro Video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
-[![Installation Video](https://img.youtube.com/vi/-QWJnZ8bVdk/hqdefault.jpg)](https://youtu.be/-QWJnZ8bVdk)  
-[More Videos](/addons/maaacks_input_remapping/docs/Videos.md)  
+[More Videos](/addons/maaacks_input_remapping/docs/Videos.md)
 
 ### Screenshots
 
 ![Key Rebinding](/addons/maaacks_input_remapping/media/screenshot-6-input-list-3.png)  
 ![Key Rebinding Small Icons](/addons/maaacks_input_remapping/media/screenshot-6-input-list-2.png)  
-![Key Rebinding Icons](/addons/maaacks_input_remapping/media/screenshot-6-input-list-1.png)  
 ![Key Rebinding Input Tree](/addons/maaacks_input_remapping/media/screenshot-6-input-tree-4.png)  
 [More Screenshots](/addons/maaacks_input_remapping/docs/Screenshots.md)  
 
@@ -87,7 +88,7 @@ When editing an existing project:
 [Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md) is done through the _Setup Wizard_ at `Project > Tools > Run Maaack's Input Remapping Setup...`.
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
-  
+
 ### More Documentation
 
 [Input Icon Mapping](/addons/maaacks_input_remapping/docs/InputIconMapping.md)  
@@ -110,8 +111,8 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 
 ## Community
 
-Join the [Discord server](https://discord.gg/AyZrJh5AMp ) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
- 
+Join the [Discord server](https://discord.gg/AyZrJh5AMp) and share your work with others. It's also a space for getting or giving feedback, and asking for help. 
+
 
 ## Links
 [Attribution](/addons/maaacks_input_remapping/ATTRIBUTION.md)  
