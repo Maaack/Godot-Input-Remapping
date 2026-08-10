@@ -193,6 +193,13 @@ func _open_confirmation_dialog() -> void:
 	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
 	add_child(confirmation_instance)
 
+func _open_continue_setup_dialog() -> void:
+	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/continue_setup_confirmation_dialog.tscn")
+	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
+	confirmation_instance.confirmed.connect(open_setup_wizard)
+	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
+	add_child(confirmation_instance)
+
 func _open_check_plugin_version() -> void:
 	if ProjectSettings.has_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
 		if ProjectSettings.get_setting(PROJECT_SETTINGS_PATH + "disable_update_check"):
@@ -212,13 +219,6 @@ func open_update_plugin() -> void:
 	update_plugin_instance.auto_start = true
 	update_plugin_instance.update_completed.connect(_remove_update_plugin_tool_option)
 	add_child(update_plugin_instance)
-
-func _open_continue_setup_dialog() -> void:
-	var confirmation_scene : PackedScene = load(get_plugin_path() + "installer/continue_setup_confirmation_dialog.tscn")
-	var confirmation_instance : ConfirmationDialog = confirmation_scene.instantiate()
-	confirmation_instance.confirmed.connect(open_setup_wizard)
-	confirmation_instance.visibility_changed.connect(_on_visibility_changed_to_hidden.bind(confirmation_instance))
-	add_child(confirmation_instance)
 
 func open_setup_wizard() -> void:
 	var setup_wizard_scene : PackedScene = load(get_plugin_path() + "installer/setup_wizard.tscn")
