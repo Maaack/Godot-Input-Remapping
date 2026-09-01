@@ -14,10 +14,6 @@ config/name="Input Remapping"
 config/features=PackedStringArray("4.7")
 config/icon="res://icon.png"
 
-[autoload]
-
-AppConfig="*res://addons/maaacks_input_remapping/base/nodes/autoloads/app_config/app_config.tscn"
-
 [display]
 
 window/size/viewport_width=1280
