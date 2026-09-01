@@ -11,13 +11,8 @@ config_version=5
 [application]
 
 config/name="Input Remapping"
-run/main_scene="uid://cq431gyaarnak"
 config/features=PackedStringArray("4.7")
 config/icon="res://icon.png"
-
-[autoload]
-
-AppConfig="*res://addons/maaacks_input_remapping/base/nodes/autoloads/app_config/app_config.tscn"
 
 [display]
 
@@ -26,7 +21,7 @@ window/size/viewport_height=720
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/maaacks_input_remapping/plugin.cfg")
+enabled=PackedStringArray("res://addons/maaacks_input_remapping/plugin.cfg", "res://addons/plugin_updater/plugin.cfg")
 
 [gui]
 
@@ -78,6 +73,13 @@ disable_install_wizard=true
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[plugin_updater]
+
+plugins={
+"res://addons/maaacks_input_remapping/": "https://github.com/Maaack/Godot-Input-Remapping",
+"res://addons/plugin_updater": "https://github.com/Maaack/Godot-Plugin-Updater"
+}
 
 [rendering]
 
