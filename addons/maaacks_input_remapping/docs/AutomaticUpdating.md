@@ -1,30 +1,31 @@
 # Automatic Updating
 
-This plugin automatically checks GitHub for new releases. When a new release is available, the option to update will appear in the `Project > Tools` menu.
+This plugin supports automatic updating with the [Godot Plugin Updater](https://github.com/Maaack/Godot-Plugin-Updater). The Plugin Updater is installed in `/addons/` alongside this plugin, and must also be enabled in **Project Settings > Plugins** to function.
+
+> [!NOTE]  
+> The input prompts installer depends on the Plugin Updater being installed in the same project. The Plugin Updater does *not* need to be enabled for the input prompts installer to function.
 
 ## Starting an Update
 
 > [!IMPORTANT]  
 > Save the state of the project, and close all open scenes and scripts.
 
-Select the option from `Project > Tools > Update Maaack's Input Remapping to v...`.
+If an update is available, then the option to update will be available at **Project > Tools > Update Plugins... > Maaack's Input Remapping to v...**.
 
-A window will pop-up, confirming the choice to update to the latest release. Select `OK`.
+Selecting the option will make a window pop-up, confirming the choice to update to the latest release. Select *OK*.
 
 Another window will show progress through downloading, saving, and extracting.
 
 This effectively deletes the current `addons/maaacks_input_remapping/` folder and replaces it with a new one. Nothing outside of `addons/` should be affected.
 
-After, a window should appear confirming a successful update.
+After extracting finishes, a window should appear confirming a successful update.
 
 ## Disabling Automatic Checking
 
-You can disable the automatic update checks by going into the Project Settings, and enabling the `maaacks_input_remapping/disable_update_check` setting. You can then close the window.
+You can disable the automatic update checks entirely by disabling the Plugin Updater in Project Settings.
+
+To disable automatic updates by plugin, go into the Project Settings, and remove the entries in the `plugin_updater/plugins` setting (ex. `"res://addons/maaacks_input_remapping/"`). You can then close the window.
 
 ## Issues
 
-If the option to update does not appear, try restarting the editor, or re-enabling the plugin.
-
-Updating adds the examples folder into the `addons/maaacks_input_remapping/` folder, if it had been deleted previously.
-
-Files already copied from the examples folder will not be affected by an update. However, a mismatch of versions may cause issues, too. If there are no major customizations to the copied files, it is recommended to delete them and recopy from `Project > Tools > Run Maaack's Input Remapping Setup...`.
+If the option to update does not appear, try restarting the editor, or re-enabling Godot Plugin Updater.
