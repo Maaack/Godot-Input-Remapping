@@ -83,7 +83,7 @@ common/enable_pause_aware_picking=true
 
 plugins={
 "res://addons/maaacks_input_remapping/": "https://github.com/Maaack/Godot-Input-Remapping",
-"res://addons/plugin_updater": "https://github.com/Maaack/Godot-Plugin-Updater"
+"res://addons/plugin_updater/": "https://github.com/Maaack/Godot-Plugin-Updater"
 }
 
 [rendering]
