@@ -230,10 +230,7 @@ func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]
 	var full_action_name_map = action_name_map.duplicate()
 	if include_built_in:
 		for action_name in built_in_action_name_map:
-			if action_name is String:
-				action_name = StringName(action_name)
-			if action_name is StringName:
-				action_names.append(action_name)
+			action_names.append(action_name)
 	if show_all_actions:
 		var all_actions := AppSettings.get_action_names(include_built_in)
 		for action_name in all_actions:
