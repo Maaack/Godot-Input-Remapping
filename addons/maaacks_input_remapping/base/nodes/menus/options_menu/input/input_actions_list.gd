@@ -21,25 +21,6 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export_range(1, 5) var action_groups : int = 2
 ## The header to each input action group.
 @export var action_group_names : Array[String]
-## The names of the action names that should be listed for editing.
-@export var input_action_names : Array[StringName] :
-	set(value):
-		var _value_changed = input_action_names != value
-		input_action_names = value
-		if _value_changed:
-			_refresh_readable_action_names()
-## The readable names of the action names that should be listed for editing.
-@export var readable_action_names : Array[String] :
-	set(value):
-		var _value_changed = readable_action_names != value
-		readable_action_names = value
-		if _value_changed:
-			var _new_action_name_map : Dictionary
-			for iter in range(input_action_names.size()):
-				var _input_name : StringName = input_action_names[iter]
-				var _readable_name : String = readable_action_names[iter]
-				_new_action_name_map[_input_name] = _readable_name
-			action_name_map = _new_action_name_map
 ## If true, capitalizes action names in order to make them readable.
 @export var capitalize_action_names : bool = true :
 	set(value):
@@ -47,6 +28,13 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 		_refresh_readable_action_names()
 ## If true, show action names that are not explicitely listed in an input action name map.
 @export var show_all_actions : bool = true
+## Maps the names of input actions to readable names for users.
+@export var action_name_map : Dictionary[StringName, String] :
+	set(value):
+		var _value_changed = action_name_map != value
+		action_name_map = value
+		if _value_changed:
+			_refresh_readable_action_names()
 ## Optional minimum size to add to all edit buttons.
 @export var button_minimum_size : Vector2
 @export_group("Icons")
@@ -61,9 +49,6 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 @export var catch_built_in_duplicate_inputs : bool = false
 ## Maps the names of built-in input actions to readable names for users.
 @export var built_in_action_name_map := InputEventHelper.BUILT_IN_ACTION_NAME_MAP
-@export_group("Debug")
-## Maps the names of input actions to readable names for users.
-@export var action_name_map : Dictionary
 
 var action_button_map : Dictionary = {}
 var button_readable_input_map : Dictionary = {}
@@ -73,12 +58,14 @@ var editing_action_group : int = 0
 var last_input_readable_name
 
 func _refresh_readable_action_names():
-		var _new_readable_action_names : Array[String]
-		for action_name in input_action_names:
-			if capitalize_action_names:
-				action_name = action_name.capitalize()
-			_new_readable_action_names.append(action_name)
-		readable_action_names = _new_readable_action_names
+	for action_name in action_name_map:
+		if not action_name_map[action_name].is_empty(): continue
+		var readable_action_name : String
+		if capitalize_action_names:
+			readable_action_name = action_name.capitalize()
+		else:
+			readable_action_name = action_name.replace("_", " ")
+		action_name_map[action_name] = readable_action_name
 
 func _clear_list() -> void:
 	for child in %ParentBoxContainer.get_children():
@@ -226,14 +213,10 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
-	var action_names : Array[StringName] = input_action_names.duplicate()
-	var full_action_name_map = action_name_map.duplicate()
+	var action_names : Array[StringName] = action_name_map.keys()
 	if include_built_in:
 		for action_name in built_in_action_name_map:
-			if action_name is String:
-				action_name = StringName(action_name)
-			if action_name is StringName:
-				action_names.append(action_name)
+			action_names.append(action_name)
 	if show_all_actions:
 		var all_actions := AppSettings.get_action_names(include_built_in)
 		for action_name in all_actions:
