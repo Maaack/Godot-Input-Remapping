@@ -1,7 +1,7 @@
 # Existing Project
 
 > [!WARNING]  
-> This page is being deprecated in favor of [Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md).
+> This page is being deprecated in favor of [Basic Setup](/docs/BasicSetup.md).
 
 
 To revisit any part of the initial setup, find the `Setup Wizard` at `Project > Tools > Run Maaack's Input Remapping Setup...`. Example files can be re-copied from the `Setup Wizard`, assuming they have not been deleted.
@@ -19,4 +19,4 @@ To revisit any part of the initial setup, find the `Setup Wizard` at `Project > 
 
 2.  Continue with:
 
-    1.  [Adding icons to the Input Options.](/addons/maaacks_input_remapping/docs/InputIconMapping.md)  
+    1.  [Adding icons to the Input Options.](/docs/InputIconMapping.md)  
