@@ -37,6 +37,8 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 			_refresh_readable_action_names()
 ## Optional minimum size to add to all edit buttons.
 @export var button_minimum_size : Vector2
+## If true, buttons are disabled after the next available action group.
+@export var auto_disable_buttons : bool = true
 @export_group("Icons")
 ## Optional link to an input icon mapper to replace the text with icons.
 @export var input_icon_mapper : InputIconMapper
@@ -127,6 +129,7 @@ func _get_button_by_action(action_name : String, action_group : int) -> Button:
 	return null
 
 func _update_next_button_disabled_state(action_name : String, action_group : int, disabled: bool = false) -> void:
+	if not auto_disable_buttons: return
 	var button = _get_button_by_action(action_name, action_group + 1)
 	if button:
 		button.disabled = disabled
