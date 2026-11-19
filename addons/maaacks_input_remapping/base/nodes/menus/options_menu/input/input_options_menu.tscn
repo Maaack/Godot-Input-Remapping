@@ -51,7 +51,6 @@ layout_mode = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-action_group_names = Array[String](["Keyboard & Mouse", "Gamepad"])
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/InputMappingContainer" unique_id=1103702008]
 layout_mode = 2
