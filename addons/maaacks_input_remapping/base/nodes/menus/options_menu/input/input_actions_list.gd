@@ -311,7 +311,6 @@ func _set_action_box_container_size() -> void:
 		%ActionBoxContainer.size_flags_vertical = SIZE_EXPAND_FILL
 
 func reset() -> void:
-	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()
 	_refresh_ui_list_button_content()
 

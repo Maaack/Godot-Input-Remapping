@@ -175,7 +175,6 @@ func remove_action_event(item : TreeItem) -> void:
 	parent_tree_item.remove_child(item)
 
 func reset() -> void:
-	AppSettings.reset_to_default_inputs()
 	_build_assigned_input_events()
 	_build_ui_tree()
 

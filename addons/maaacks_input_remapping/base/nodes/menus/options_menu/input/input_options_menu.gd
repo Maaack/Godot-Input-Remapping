@@ -37,6 +37,7 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 var last_input_readable_name
 
 func _ready() -> void:
+	AppSettings.set_from_config()
 	remapping_mode = remapping_mode
 	input_actions_tree.already_assigned.connect(_on_input_actions_list_already_assigned)
 	key_assignment_window.confirmed.connect(_on_key_assignment_window_confirmed)
@@ -104,9 +105,11 @@ func _on_input_actions_list_minimum_reached(action_name) -> void:
 func _on_input_actions_list_button_clicked(action_name, readable_input_name) -> void:
 	_open_key_assignment_window(action_name, readable_input_name)
 
+func reset_inputs() -> void:
+	AppSettings.reset_to_default_inputs()
+	input_actions_list.reset()
+	input_actions_tree.reset()
+	input_actions_device_groups.reset()
+
 func _on_reset_confirmation_confirmed() -> void:
-	match(remapping_mode):
-		0:
-			input_actions_list.reset()
-		1:
-			input_actions_tree.reset()
+	reset_inputs()
