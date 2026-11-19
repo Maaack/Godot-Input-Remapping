@@ -5,8 +5,9 @@ const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
-@onready var input_actions_list = %InputActionsList
-@onready var input_actions_tree = %InputActionsTree
+@onready var input_actions_list: InputActionsList = %InputActionsList
+@onready var input_actions_tree: InputActionsTree = %InputActionsTree
+@onready var input_actions_device_groups: InputActionsDeviceGroups = %InputActionsDeviceGroups
 @onready var key_deletion_confirmation = %KeyDeletionConfirmation
 @onready var reset_confirmation = %ResetConfirmation
 @onready var one_input_minimum_message = %OneInputMinimumMessage
@@ -15,7 +16,7 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 @onready var assignment_placeholder_text = %KeyAssignmentWindow.text
 @onready var reset_button = %ResetButton
 
-@export_enum("List", "Tree") var remapping_mode : int = 0 :
+@export_enum("List", "Tree", "Device Groups") var remapping_mode : int = 0 :
 	set(value):
 		remapping_mode = value
 		if is_inside_tree():
@@ -23,9 +24,15 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 				0:
 					input_actions_list.show()
 					input_actions_tree.hide()
+					input_actions_device_groups.hide()
 				1:
 					input_actions_list.hide()
 					input_actions_tree.show()
+					input_actions_device_groups.hide()
+				2:
+					input_actions_list.hide()
+					input_actions_tree.hide()
+					input_actions_device_groups.show()
 
 var last_input_readable_name
 
