@@ -43,7 +43,6 @@ var tree_item_action_map : Dictionary = {}
 var assigned_input_events : Dictionary = {}
 var editing_action_name : String = ""
 var editing_item
-var last_input_readable_name
 
 func _refresh_readable_action_names():
 	for action_name in action_name_map:
@@ -150,15 +149,14 @@ func _get_action_for_input_event(input_event : InputEvent) -> String:
 		return assigned_input_events[InputEventHelper.get_text(input_event)] 
 	return ""
 
-func add_action_event(last_input_text : String, last_input_event : InputEvent):
-	last_input_readable_name = last_input_text
-	if last_input_event != null:
-		var assigned_action := _get_action_for_input_event(last_input_event)
+func add_action_event(input_readable_text : String, input_event : InputEvent):
+	if input_event != null:
+		var assigned_action := _get_action_for_input_event(input_event)
 		if not assigned_action.is_empty():
 			var readable_action_name = tr(_get_action_readable_name(assigned_action))
-			already_assigned.emit(readable_action_name, last_input_readable_name)
+			already_assigned.emit(readable_action_name, input_readable_text)
 		else:
-			_assign_input_event_to_action(last_input_event, editing_action_name)
+			_assign_input_event_to_action(input_event, editing_action_name)
 	editing_action_name = ""
 
 func remove_action_event(item : TreeItem) -> void:

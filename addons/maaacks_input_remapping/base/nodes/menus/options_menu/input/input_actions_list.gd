@@ -57,7 +57,6 @@ var button_readable_input_map : Dictionary[Button, String] = {}
 var assigned_input_events : Dictionary[String, String] = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
-var last_input_readable_name
 
 func _refresh_readable_action_names():
 	for action_name in action_name_map:
@@ -243,7 +242,7 @@ func _build_ui_list() -> void:
 
 func _assign_input_event(input_event : InputEvent, action_name : String) -> void:
 	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
-		
+
 func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
 	_assign_input_event(input_event, action_name)
 	var action_events := InputMap.action_get_events(action_name)
@@ -260,6 +259,9 @@ func _assign_input_event_to_action_group(input_event : InputEvent, action_name :
 	_update_assigned_inputs_and_button(action_name, action_group, input_event)
 	_update_next_button_disabled_state(action_name, action_group)
 
+func _assign_input_event_to_editing_button(input_event: InputEvent) -> void:
+	_assign_input_event_to_action_group(input_event, editing_action_name, editing_action_group)
+
 func _build_assigned_input_events() -> void:
 	assigned_input_events.clear()
 	var action_names := _get_all_action_names(show_built_in_actions and catch_built_in_duplicate_inputs)
@@ -273,15 +275,14 @@ func _get_action_for_input_event(input_event : InputEvent) -> String:
 		return assigned_input_events[InputEventHelper.get_text(input_event)] 
 	return ""
 
-func add_action_event(last_input_text : String, last_input_event : InputEvent) -> void:
-	last_input_readable_name = last_input_text
-	if last_input_event != null:
-		var assigned_action := _get_action_for_input_event(last_input_event)
+func add_action_event(input_readable_text : String, input_event : InputEvent) -> void:
+	if input_event != null:
+		var assigned_action := _get_action_for_input_event(input_event)
 		if not assigned_action.is_empty():
 			var readable_action_name = tr(_get_action_readable_name(assigned_action))
-			already_assigned.emit(readable_action_name, last_input_readable_name)
+			already_assigned.emit(readable_action_name, input_readable_text)
 		else:
-			_assign_input_event_to_action_group(last_input_event, editing_action_name, editing_action_group)
+			_assign_input_event_to_editing_button(input_event)
 	editing_action_name = ""
 
 func _refresh_ui_list_button_content() -> void:

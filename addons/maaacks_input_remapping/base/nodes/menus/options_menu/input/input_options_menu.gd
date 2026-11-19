@@ -34,8 +34,6 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 					input_actions_tree.hide()
 					input_actions_device_groups.show()
 
-var last_input_readable_name
-
 func _ready() -> void:
 	AppSettings.set_from_config()
 	remapping_mode = remapping_mode
@@ -47,7 +45,7 @@ func _ready() -> void:
 
 func _add_action_event() -> void:
 	var last_input_event = key_assignment_window.last_input_event
-	last_input_readable_name = key_assignment_window.last_input_text
+	var last_input_readable_name = key_assignment_window.last_input_text
 	match(remapping_mode):
 		0:
 			input_actions_list.add_action_event(last_input_readable_name, last_input_event)
