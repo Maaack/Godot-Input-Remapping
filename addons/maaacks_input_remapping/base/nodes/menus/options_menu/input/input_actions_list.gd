@@ -205,7 +205,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 		if group_iter < input_events.size():
 			input_event = input_events[group_iter]
 		var text = InputEventHelper.get_text(input_event)
-		var is_disabled = group_iter > input_events.size()
+		var is_disabled = (group_iter > input_events.size()) and auto_disable_buttons
 		if text.is_empty(): text = EMPTY_INPUT_ACTION_STRING
 		var icon : Texture
 		if input_icon_mapper:
