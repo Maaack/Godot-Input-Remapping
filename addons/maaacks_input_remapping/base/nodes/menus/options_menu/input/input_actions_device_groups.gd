@@ -3,26 +3,36 @@ class_name InputActionsDeviceGroups
 extends InputActionsList
 ## Scene to list the input actions out as buttons by input type (keyboard, mouse, gamepad).
 
+const ANY_DEVICE = "Any"
 const KEYBOARD_AND_MOUSE_DEVICE = "Keyboard & Mouse"
 const KEYBOARD_DEVICE =  "Keyboard"
 const MOUSE_DEVICE = "Mouse"
 const JOYPAD_DEVICE = "Gamepad"
 
 const INPUT_HELPER_DEVICE_NAME_ENUMS_MAP : Dictionary[StringName, Array] = {
-	InputEventHelper.DEVICE_KEYBOARD : [1, 0],
-	InputEventHelper.DEVICE_MOUSE : [2, 0],
-	InputEventHelper.DEVICE_JOYPAD : [3],
+	InputEventHelper.DEVICE_KEYBOARD : [2, 1, 0],
+	InputEventHelper.DEVICE_MOUSE : [3, 1, 0],
+	InputEventHelper.DEVICE_JOYPAD : [4],
 	InputEventHelper.DEVICE_SCREEN : []
 }
 
-const ENUM_INPUT_HELPER_DEVICE_NAMES_MAP : Dictionary[int, Array] = {
-	0 : [InputEventHelper.DEVICE_KEYBOARD, InputEventHelper.DEVICE_MOUSE],
-	1 : [InputEventHelper.DEVICE_KEYBOARD],
-	2 : [InputEventHelper.DEVICE_MOUSE],
-	3 : [InputEventHelper.DEVICE_JOYPAD],
+const ENUM_INPUT_HELPER_DEVICE_NAME : Dictionary[int, String] = {
+	0 : ANY_DEVICE,
+	1 : KEYBOARD_AND_MOUSE_DEVICE,
+	2 : KEYBOARD_DEVICE,
+	3 : MOUSE_DEVICE,
+	4 : JOYPAD_DEVICE,
 }
 
-@export_enum(KEYBOARD_AND_MOUSE_DEVICE, KEYBOARD_DEVICE, MOUSE_DEVICE, JOYPAD_DEVICE) var action_group_input_devices : Array[int] :
+const ENUM_INPUT_HELPER_DEVICE_NAMES_MAP : Dictionary[int, Array] = {
+	0 : [],
+	1 : [InputEventHelper.DEVICE_KEYBOARD, InputEventHelper.DEVICE_MOUSE],
+	2 : [InputEventHelper.DEVICE_KEYBOARD],
+	3 : [InputEventHelper.DEVICE_MOUSE],
+	4 : [InputEventHelper.DEVICE_JOYPAD],
+}
+
+@export_enum(ANY_DEVICE, KEYBOARD_AND_MOUSE_DEVICE, KEYBOARD_DEVICE, MOUSE_DEVICE, JOYPAD_DEVICE) var action_group_input_devices : Array[int] :
 	set(value):
 		var _value_changed = action_group_input_devices != value
 		action_group_input_devices = value
@@ -33,16 +43,7 @@ func _refresh_action_group_names() -> void:
 	action_groups = action_group_input_devices.size()
 	action_group_names.clear()
 	for input_device_enum in action_group_input_devices:
-		var group_name : String
-		match(input_device_enum):
-			0:
-				group_name = KEYBOARD_AND_MOUSE_DEVICE
-			1:
-				group_name = KEYBOARD_DEVICE
-			2:
-				group_name = MOUSE_DEVICE
-			3:
-				group_name = JOYPAD_DEVICE
+		var group_name := ENUM_INPUT_HELPER_DEVICE_NAME[input_device_enum]
 		action_group_names.append(group_name)
 
 func _get_event_device_group(input_event : InputEvent) -> int:
