@@ -13,6 +13,7 @@ size_flags_vertical = 3
 follow_focus = true
 script = ExtResource("1_1ieph")
 action_group_input_devices = Array[int]([0, 3])
+action_group_names = Array[String](["Keyboard & Mouse", "Gamepad"])
 auto_disable_buttons = false
 
 [node name="ParentBoxContainer" type="BoxContainer" parent="." unique_id=1470838105]

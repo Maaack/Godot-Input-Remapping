@@ -10,16 +10,17 @@ offset_right = 210.0
 offset_bottom = 100.0
 script = ExtResource("2_oif0q")
 input_confirmation = 0
+accept_input_devices = []
 title = "Set Input"
 close_button_text = "Close"
 
 [node name="TitleLabel" parent="ContentContainer/BoxContainer/TitleMargin/BoxContainer" parent_id_path=PackedInt32Array(1788474031) index="0" unique_id=1049966061]
 text = "Set Input"
 
-[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(1537458657) index="0" unique_id=1847979628]
+[node name="DescriptionLabel" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="0" unique_id=617407155]
 visible = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(1537458657) index="1" unique_id=1009741630]
+[node name="VBoxContainer" type="VBoxContainer" parent="ContentContainer/BoxContainer/BodyMargin" parent_id_path=PackedInt32Array(590613964) index="1" unique_id=1009741630]
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -42,16 +43,16 @@ drag_and_drop_selection_enabled = false
 middle_mouse_paste_enabled = false
 caret_move_on_right_click = false
 
-[node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" parent_id_path=PackedInt32Array(1183982851) index="0" unique_id=461217797]
+[node name="MenuButtons" parent="ContentContainer/BoxContainer/MenuButtonsMargin" parent_id_path=PackedInt32Array(1413292752) index="0" unique_id=1371114575]
 null_focus_enabled = false
 joypad_enabled = false
 mouse_hidden_enabled = false
 
-[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0" unique_id=925643019]
+[node name="CloseButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0" unique_id=314526102]
 focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
 text = "Close"
 
-[node name="ConfirmButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1" unique_id=1830742125]
+[node name="ConfirmButton" parent="ContentContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="1" unique_id=1052970550]
 focus_neighbor_top = NodePath("../../../BodyMargin/VBoxContainer/InputTextEdit")
 
 [node name="DelayTimer" type="Timer" parent="." index="1" unique_id=872675040]

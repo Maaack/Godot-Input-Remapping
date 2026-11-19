@@ -7,7 +7,7 @@ const EMPTY_INPUT_ACTION_STRING = " "
 
 signal already_assigned(action_name : String, input_name : String)
 signal minimum_reached(action_name : String)
-signal button_clicked(action_name : String, readable_input_name : String)
+signal button_clicked(action_name : String, readable_input_name : String, accepted_input_devices: Array)
 
 const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
@@ -76,9 +76,9 @@ func _clear_list() -> void:
 			continue
 		child.queue_free()
 
-func _replace_action(action_name : String, readable_input_name : String = "") -> void:
+func _replace_action(action_name : String, readable_input_name : String = "", _action_group: int = -1) -> void:
 	var readable_action_name = tr(_get_action_readable_name(action_name))
-	button_clicked.emit(readable_action_name, readable_input_name)
+	button_clicked.emit(readable_action_name, readable_input_name, [])
 
 func _on_button_pressed(action_name : String, action_group : int) -> void:
 	var button = _get_button_by_action(action_name, action_group)
@@ -88,7 +88,7 @@ func _on_button_pressed(action_name : String, action_group : int) -> void:
 	var readable_input_name : String
 	if button and button in button_readable_input_map:
 		readable_input_name = button_readable_input_map[button]
-	_replace_action(action_name, readable_input_name)
+	_replace_action(action_name, readable_input_name, action_group)
 
 func _new_action_box() -> Node:
 	var new_action_box : Node = %ActionBoxContainer.duplicate()
