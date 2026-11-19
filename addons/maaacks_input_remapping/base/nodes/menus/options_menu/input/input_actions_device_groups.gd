@@ -73,8 +73,3 @@ func _refresh_ui_list_button_content() -> void:
 
 func _get_input_event_action_group(input_event: InputEvent, _input_events: Array[InputEvent]) -> int:
 	return _get_event_device_group(input_event)
-
-func _connect_button_and_add_to_maps(button : Button, input_name : String, action_name : String, group_iter : int) -> void:
-	button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
-	button_readable_input_map[button] = input_name
-	_add_to_action_button_map(action_name, group_iter, button)
