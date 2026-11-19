@@ -61,22 +61,6 @@ func _replace_action(action_name : String, readable_input_name : String = "", ac
 		device_names = ENUM_INPUT_HELPER_DEVICE_NAMES_MAP[input_devices_enum]
 	button_clicked.emit(readable_action_name, readable_input_name, device_names)
 
-func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int, old_input_event: InputEvent) -> void:
-	_assign_input_event(input_event, action_name)
-	var action_events := InputMap.action_get_events(action_name)
-	action_events.resize(action_events.size() + 1)
-	var input_iter = action_events.find(old_input_event)
-	action_events[input_iter] = input_event
-	InputMap.action_erase_events(action_name)
-	var final_action_events : Array[InputEvent]
-	for input_action_event in action_events:
-		if input_action_event == null: continue
-		final_action_events.append(input_action_event)
-		InputMap.action_add_event(action_name, input_action_event)
-	AppSettings.set_config_input_events(action_name, final_action_events)
-	action_group = _get_event_device_group(input_event)
-	_update_assigned_inputs_and_button(action_name, action_group, input_event)
-
 func _refresh_ui_list_button_content() -> void:
 	var action_names : Array[StringName] = _get_all_action_names(show_built_in_actions)
 	for action_name in action_names:

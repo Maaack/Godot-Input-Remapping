@@ -100,7 +100,6 @@ func _should_confirm_input_event(event : InputEvent) -> bool:
 
 func _confirm_choice() -> void:
 	confirmed.emit()
-	accept_input_devices.clear()
 	close()
 
 func _process_input_event(event : InputEvent) -> void:
