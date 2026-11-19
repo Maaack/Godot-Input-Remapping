@@ -54,9 +54,11 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 
 var action_button_map : Dictionary[String, Button] = {}
 var button_readable_input_map : Dictionary[Button, String] = {}
+var button_input_event_map : Dictionary[Button, InputEvent] = {}
 var assigned_input_events : Dictionary[String, String] = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
+var editing_input_event : InputEvent
 
 func _refresh_readable_action_names():
 	for action_name in action_name_map:
@@ -79,9 +81,10 @@ func _replace_action(action_name : String, readable_input_name : String = "") ->
 	button_clicked.emit(readable_action_name, readable_input_name)
 
 func _on_button_pressed(action_name : String, action_group : int) -> void:
+	var button = _get_button_by_action(action_name, action_group)
 	editing_action_name = action_name
 	editing_action_group = action_group
-	var button = _get_button_by_action(action_name, action_group)
+	editing_input_event = button_input_event_map[button]
 	var readable_input_name : String
 	if button and button in button_readable_input_map:
 		readable_input_name = button_readable_input_map[button]
@@ -153,6 +156,7 @@ func _update_assigned_inputs_and_button(action_name : String, action_group : int
 		old_readable_input_name = button_readable_input_map[button]
 		assigned_input_events.erase(old_readable_input_name)
 	button_readable_input_map[button] = new_readable_input_name
+	button_input_event_map[button] = input_event
 	assigned_input_events[new_readable_input_name] = action_name
 
 func _clear_button(action_name : String, action_group : int) -> void:
@@ -165,6 +169,7 @@ func _clear_button(action_name : String, action_group : int) -> void:
 		old_readable_input_name = button_readable_input_map[button]
 		assigned_input_events.erase(old_readable_input_name)
 	button_readable_input_map[button] = EMPTY_INPUT_ACTION_STRING
+	button_input_event_map[button] = null
 
 func _add_new_button(container: Control) -> Button:
 	var new_button := Button.new()
@@ -243,7 +248,7 @@ func _build_ui_list() -> void:
 func _assign_input_event(input_event : InputEvent, action_name : String) -> void:
 	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
 
-func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
+func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int, _old_input_event: InputEvent) -> void:
 	_assign_input_event(input_event, action_name)
 	var action_events := InputMap.action_get_events(action_name)
 	action_events.resize(action_events.size() + 1)
@@ -260,7 +265,7 @@ func _assign_input_event_to_action_group(input_event : InputEvent, action_name :
 	_update_next_button_disabled_state(action_name, action_group)
 
 func _assign_input_event_to_editing_button(input_event: InputEvent) -> void:
-	_assign_input_event_to_action_group(input_event, editing_action_name, editing_action_group)
+	_assign_input_event_to_action_group(input_event, editing_action_name, editing_action_group, editing_input_event)
 
 func _build_assigned_input_events() -> void:
 	assigned_input_events.clear()

@@ -51,6 +51,8 @@ func _add_action_event() -> void:
 			input_actions_list.add_action_event(last_input_readable_name, last_input_event)
 		1:
 			input_actions_tree.add_action_event(last_input_readable_name, last_input_event)
+		2:
+			input_actions_device_groups.add_action_event(last_input_readable_name, last_input_event)
 
 func _remove_action_event(item : TreeItem) -> void:
 	input_actions_tree.remove_action_event(item)

@@ -45,11 +45,12 @@ func _get_event_device_group(input_event : InputEvent) -> int:
 			return action_group_input_devices.find(matching_enum)
 	return -1
 
-func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int) -> void:
+func _assign_input_event_to_action_group(input_event : InputEvent, action_name : String, action_group : int, old_input_event: InputEvent) -> void:
 	_assign_input_event(input_event, action_name)
 	var action_events := InputMap.action_get_events(action_name)
 	action_events.resize(action_events.size() + 1)
-	action_events[action_group] = input_event
+	var input_iter = action_events.find(old_input_event)
+	action_events[input_iter] = input_event
 	InputMap.action_erase_events(action_name)
 	var final_action_events : Array[InputEvent]
 	for input_action_event in action_events:
