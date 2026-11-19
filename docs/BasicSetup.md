@@ -28,5 +28,6 @@ The remaining steps are optional customizations.
 ## Next Steps
 
 ### Recommended
-1.  [Adding Icons to the Input Options](/docs/InputIconMapping.md)  
-2.  [Supporting Joypad Inputs](/docs/JoypadInputs.md)  
+1.  [Input Remapping Menus](/docs/InputRemappingMenus.md)  
+2.  [Adding Icons to the Input Options](/docs/InputIconMapping.md)  
+3.  [Supporting Joypad Inputs](/docs/JoypadInputs.md)  

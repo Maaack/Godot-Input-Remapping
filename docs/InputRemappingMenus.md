@@ -1,4 +1,4 @@
-# Input Remapping
+# Input Remapping Menus
 
 The `input_options_menu.tscn` is a menu controller that can switch between different remapping menus provided with the addon/template.
 
@@ -29,4 +29,10 @@ The **Tree** remapping menu allows the player to remap any number of inputs per 
 ![Input List](/media/screenshot-8-input-device-group.png)
 ![Input List w/ Icons](/media/screenshot-8-input-device-group-icons.png)
 
-The **Device Group** remapping menu is similar to the **List**, in that it allows the player to remap inputs per action and specific input devices. To adjust the type of devices that can be edited, select the **InputActionsDeviceGroups** in the *SceneTree*, and then change the **Action Group Input Devices** in the *Inspector*.
+The **Device Group** remapping menu is similar to the **List**, but it allows the player to remap inputs by specific input devices. To adjust the type of devices that can be edited, select the **InputActionsDeviceGroups** in the *SceneTree*, and then change the **Action Group Input Devices** in the *Inspector*.
+
+## Next Steps
+
+### Recommended
+1.  [Adding Icons to the Input Options](/docs/InputIconMapping.md)  
+2.  [Supporting Joypad Inputs](/docs/JoypadInputs.md)  

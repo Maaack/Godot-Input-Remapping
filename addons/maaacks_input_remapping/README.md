@@ -52,7 +52,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 
 ### More Documentation
 
-[Input Remapping](/docs/InputRemapping.md)  
+[Input Remapping Menus](/docs/InputRemappingMenus.md)  
 [Input Icon Mapping](/docs/InputIconMapping.md)  
 [Joypad Inputs](/docs/JoypadInputs.md)  
 [How Parts Work](/docs/HowPartsWork.md)  
