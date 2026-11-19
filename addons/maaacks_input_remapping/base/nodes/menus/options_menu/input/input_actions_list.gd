@@ -207,6 +207,7 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 	new_action_box.get_child(0).text = readable_action_name
 	for group_iter in range(action_groups):
 		var button : Button = _add_new_button(new_action_box)
+		button.disabled = (group_iter > input_events.size()) and auto_disable_buttons
 		_connect_button_signals(button, action_name, group_iter)
 	for input_event in input_events:
 		var action_group = _get_input_event_action_group(input_event, input_events)
