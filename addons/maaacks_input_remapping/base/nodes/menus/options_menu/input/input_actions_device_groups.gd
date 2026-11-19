@@ -71,18 +71,8 @@ func _refresh_ui_list_button_content() -> void:
 			_update_assigned_inputs_and_button(action_name, action_group, input_event)
 			_update_next_button_disabled_state(action_name, action_group)
 
-func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]) -> void:
-	var new_action_box = %ActionBoxContainer.duplicate()
-	new_action_box.visible = true
-	new_action_box.vertical = !(vertical)
-	new_action_box.get_child(0).text = readable_action_name
-	for group_iter in range(action_groups):
-		var button : Button = _add_new_button(EMPTY_INPUT_ACTION_STRING, new_action_box, false)
-		_connect_button_and_add_to_maps(button, EMPTY_INPUT_ACTION_STRING, action_name, group_iter)
-	for input_event in input_events:
-		var action_group = _get_event_device_group(input_event)
-		_update_assigned_inputs_and_button(action_name, action_group, input_event)
-	%ParentBoxContainer.add_child(new_action_box)
+func _get_input_event_action_group(input_event: InputEvent, _input_events: Array[InputEvent]) -> int:
+	return _get_event_device_group(input_event)
 
 func _connect_button_and_add_to_maps(button : Button, input_name : String, action_name : String, group_iter : int) -> void:
 	button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))

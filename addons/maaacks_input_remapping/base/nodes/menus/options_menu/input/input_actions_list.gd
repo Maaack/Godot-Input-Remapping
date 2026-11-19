@@ -52,9 +52,9 @@ const BUTTON_NAME_GROUP_STRING : String = "%s:%d"
 ## Maps the names of built-in input actions to readable names for users.
 @export var built_in_action_name_map := InputEventHelper.BUILT_IN_ACTION_NAME_MAP
 
-var action_button_map : Dictionary = {}
-var button_readable_input_map : Dictionary = {}
-var assigned_input_events : Dictionary = {}
+var action_button_map : Dictionary[String, Button] = {}
+var button_readable_input_map : Dictionary[Button, String] = {}
+var assigned_input_events : Dictionary[String, String] = {}
 var editing_action_name : String = ""
 var editing_action_group : int = 0
 var last_input_readable_name
@@ -167,7 +167,7 @@ func _clear_button(action_name : String, action_group : int) -> void:
 		assigned_input_events.erase(old_readable_input_name)
 	button_readable_input_map[button] = EMPTY_INPUT_ACTION_STRING
 
-func _add_new_button(content : Variant, container: Control, disabled : bool = false) -> Button:
+func _add_new_button(container: Control) -> Button:
 	var new_button := Button.new()
 	if button_minimum_size.x > 0:
 		new_button.custom_minimum_size.x = button_minimum_size.x
@@ -182,18 +182,15 @@ func _add_new_button(content : Variant, container: Control, disabled : bool = fa
 	new_button.icon_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	new_button.text_overrun_behavior = TextServer.OVERRUN_TRIM_ELLIPSIS
 	new_button.expand_icon = expand_icon
-	if content is Texture:
-		new_button.icon = content
-	elif content is String:
-		new_button.text = content
-	new_button.disabled = disabled
 	container.add_child(new_button)
 	return new_button
 
-func _connect_button_and_add_to_maps(button : Button, input_name : String, action_name : String, group_iter : int) -> void:
+func _connect_button_signals(button : Button, action_name : String, group_iter : int) -> void:
 	button.pressed.connect(_on_button_pressed.bind(action_name, group_iter))
-	button_readable_input_map[button] = input_name
 	_add_to_action_button_map(action_name, group_iter, button)
+
+func _get_input_event_action_group(input_event: InputEvent, input_events: Array[InputEvent]) -> int:
+	return input_events.find(input_event)
 
 func _add_action_options(action_name : String, readable_action_name : String, input_events : Array[InputEvent]) -> void:
 	var new_action_box = %ActionBoxContainer.duplicate()
@@ -201,18 +198,11 @@ func _add_action_options(action_name : String, readable_action_name : String, in
 	new_action_box.vertical = !(vertical)
 	new_action_box.get_child(0).text = readable_action_name
 	for group_iter in range(action_groups):
-		var input_event : InputEvent
-		if group_iter < input_events.size():
-			input_event = input_events[group_iter]
-		var text = InputEventHelper.get_text(input_event)
-		var is_disabled = (group_iter > input_events.size()) and auto_disable_buttons
-		if text.is_empty(): text = EMPTY_INPUT_ACTION_STRING
-		var icon : Texture
-		if input_icon_mapper:
-			icon = input_icon_mapper.get_icon(input_event)
-		var content = icon if icon else text
-		var button : Button = _add_new_button(content, new_action_box, is_disabled)
-		_connect_button_and_add_to_maps(button, text, action_name, group_iter)
+		var button : Button = _add_new_button(new_action_box)
+		_connect_button_signals(button, action_name, group_iter)
+	for input_event in input_events:
+		var action_group = _get_input_event_action_group(input_event, input_events)
+		_update_assigned_inputs_and_button(action_name, action_group, input_event)
 	%ParentBoxContainer.add_child(new_action_box)
 
 func _get_all_action_names(include_built_in : bool = false) -> Array[StringName]:
