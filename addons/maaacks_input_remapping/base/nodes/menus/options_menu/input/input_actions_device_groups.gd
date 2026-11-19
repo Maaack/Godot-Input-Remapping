@@ -9,8 +9,8 @@ const MOUSE_DEVICE = "Mouse"
 const JOYPAD_DEVICE = "Gamepad"
 
 const INPUT_HELPER_DEVICE_NAME_ENUMS_MAP : Dictionary[StringName, Array] = {
-	InputEventHelper.DEVICE_KEYBOARD : [0, 1],
-	InputEventHelper.DEVICE_MOUSE : [0, 2],
+	InputEventHelper.DEVICE_KEYBOARD : [1, 0],
+	InputEventHelper.DEVICE_MOUSE : [2, 0],
 	InputEventHelper.DEVICE_JOYPAD : [3],
 	InputEventHelper.DEVICE_SCREEN : []
 }
