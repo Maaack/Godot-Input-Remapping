@@ -67,10 +67,11 @@ func _refresh_ui_list_button_content() -> void:
 		var input_events := InputMap.action_get_events(action_name)
 		if input_events.size() < 1:
 			continue
+		for group_iter in range(action_groups):
+			_clear_button(action_name, group_iter)
 		for input_event in input_events:
 			var action_group = _get_event_device_group(input_event)
 			_update_assigned_inputs_and_button(action_name, action_group, input_event)
-			_update_next_button_disabled_state(action_name, action_group)
 
 func _get_input_event_action_group(input_event: InputEvent, _input_events: Array[InputEvent]) -> int:
 	return _get_event_device_group(input_event)
