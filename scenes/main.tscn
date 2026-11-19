@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cm2p3tag5f8ih"]
+
+[ext_resource type="Script" uid="uid://c3bpt3cimuad0" path="res://scenes/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://cq431gyaarnak" path="res://scenes/menus/options_menu/input/input_options_menu.tscn" id="2_0wfyh"]
+
+[node name="Main" type="Control" unique_id=1176828020]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o5qli")
+
+[node name="Controls" parent="." unique_id=953135854 instance=ExtResource("2_0wfyh")]
+layout_mode = 1
+remapping_mode = 2
