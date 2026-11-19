@@ -11,4 +11,7 @@ input_icon_mapper = NodePath("../../../InputIconMapper")
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" parent_id_path=PackedInt32Array(1822865490) index="2" unique_id=895077546 node_paths=PackedStringArray("input_icon_mapper")]
 input_icon_mapper = NodePath("../../../InputIconMapper")
 
+[node name="InputActionsDeviceGroups" parent="VBoxContainer/InputMappingContainer" parent_id_path=PackedInt32Array(1822865490) index="3" unique_id=1224713167 node_paths=PackedStringArray("input_icon_mapper")]
+input_icon_mapper = NodePath("../../../InputIconMapper")
+
 [node name="InputIconMapper" parent="." index="6" unique_id=836899981 instance=ExtResource("2_hyv0n")]

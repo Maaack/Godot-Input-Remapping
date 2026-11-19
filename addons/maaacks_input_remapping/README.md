@@ -11,7 +11,6 @@ For *Godot 4.7* (4.4+ compatible)
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template) of *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)*, which includes additional features.
 
-
 ## Objective
 
 Setup an input remapping menu in about 5 minutes.
@@ -53,6 +52,7 @@ As part of setup, example scenes are copied out of `/addons/` into a desired fol
 
 ### More Documentation
 
+[Input Remapping](/docs/InputRemapping.md)  
 [Input Icon Mapping](/docs/InputIconMapping.md)  
 [Joypad Inputs](/docs/JoypadInputs.md)  
 [How Parts Work](/docs/HowPartsWork.md)  
