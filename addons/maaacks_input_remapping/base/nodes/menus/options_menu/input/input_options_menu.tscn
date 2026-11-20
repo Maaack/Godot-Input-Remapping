@@ -38,7 +38,7 @@ layout_mode = 2
 text = "Actions & Inputs"
 horizontal_alignment = 1
 
-[node name="InputActionsDeviceGroups" parent="VBoxContainer/InputMappingContainer" unique_id=1224713167 instance=ExtResource("3_jifh0")]
+[node name="InputActionsDeviceTable" parent="VBoxContainer/InputMappingContainer" unique_id=1224713167 instance=ExtResource("3_jifh0")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -99,9 +99,9 @@ visible = false
 custom_minimum_size = Vector2(420, 200)
 layout_mode = 2
 
-[connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsDeviceGroups" to="." method="_on_input_actions_list_already_assigned"]
-[connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsDeviceGroups" to="." method="_on_input_actions_list_button_clicked"]
-[connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsDeviceGroups" to="." method="_on_input_actions_list_minimum_reached"]
+[connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsDeviceTable" to="." method="_on_input_actions_list_already_assigned"]
+[connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsDeviceTable" to="." method="_on_input_actions_list_button_clicked"]
+[connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsDeviceTable" to="." method="_on_input_actions_list_minimum_reached"]
 [connection signal="already_assigned" from="VBoxContainer/InputMappingContainer/InputActionsTable" to="." method="_on_input_actions_list_already_assigned"]
 [connection signal="button_clicked" from="VBoxContainer/InputMappingContainer/InputActionsTable" to="." method="_on_input_actions_list_button_clicked"]
 [connection signal="minimum_reached" from="VBoxContainer/InputMappingContainer/InputActionsTable" to="." method="_on_input_actions_list_minimum_reached"]

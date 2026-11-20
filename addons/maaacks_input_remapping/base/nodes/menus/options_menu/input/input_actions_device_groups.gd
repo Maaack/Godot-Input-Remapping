@@ -1,5 +1,5 @@
 @tool
-class_name InputActionsDeviceGroups
+class_name InputActionsDeviceTable
 extends InputActionsTable
 ## Scene to list the input actions out as buttons by input type (keyboard, mouse, gamepad).
 
