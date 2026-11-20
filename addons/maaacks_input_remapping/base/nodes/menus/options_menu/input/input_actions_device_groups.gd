@@ -46,29 +46,29 @@ func _refresh_action_group_names() -> void:
 		var group_name := ENUM_INPUT_HELPER_DEVICE_NAME[input_device_enum]
 		action_group_names.append(group_name)
 
-func _get_prior_matching_devices(input_event : InputEvent, input_events: Array[InputEvent]) -> int:
-	var device_name = InputEventHelper.get_input_device_name(input_event)
-	var matches:int = 0
-	for comparing_input_event in input_events:
-		if comparing_input_event == input_event: break
-		if InputEventHelper.get_input_device_name(comparing_input_event) == device_name:
-			matches += 1
-	return matches
-
-func _get_event_device_group(input_event : InputEvent, input_events: Array[InputEvent]) -> int:
+func _get_event_matching_enum(input_event : InputEvent, sub_action_groups_input_devices:Array[int]) -> int:
 	var device_name := InputEventHelper.get_input_device_name(input_event)
-	var matching_devices := _get_prior_matching_devices(input_event, input_events)
 	var matching_enums := INPUT_HELPER_DEVICE_NAME_ENUMS_MAP[device_name]
 	for matching_enum in matching_enums:
-		if matching_enum in action_group_input_devices:
-			if matching_devices == 0:
-				return action_group_input_devices.find(matching_enum)
-			matching_devices -= 1
+		if matching_enum in sub_action_groups_input_devices:
+			return matching_enum
 	return -1
-	
+
+func _get_available_event_device_group(input_event : InputEvent, input_events: Array[InputEvent]) -> int:
+	var sub_action_groups_input_devices = action_group_input_devices.duplicate()
+	var device_name = InputEventHelper.get_input_device_name(input_event)
+	var matching_enums := INPUT_HELPER_DEVICE_NAME_ENUMS_MAP[device_name]
+	for comparing_input_event in input_events:
+		if comparing_input_event == input_event: break
+		var comparing_enum = _get_event_matching_enum(comparing_input_event, sub_action_groups_input_devices)
+		if comparing_enum > -1:
+			sub_action_groups_input_devices.erase(comparing_enum)
+	var matching_enum : int = _get_event_matching_enum(input_event, sub_action_groups_input_devices)
+	return action_group_input_devices.find(matching_enum)
+
 func _assign_editing_input_event(input_event: InputEvent) -> void:
 	var input_events := InputMap.action_get_events(editing_action_name)
-	var action_group := _get_event_device_group(input_event, input_events)
+	var action_group := _get_available_event_device_group(input_event, input_events)
 	_assign_input_event_to_action_group(input_event, editing_action_name, action_group, editing_input_key)
 
 func _replace_action(action_name : String, readable_input_name : String = "", action_group: int = -1) -> void:
@@ -88,9 +88,9 @@ func _refresh_ui_list_button_content() -> void:
 		for group_iter in range(action_groups):
 			_clear_button(action_name, group_iter)
 		for input_event in input_events:
-			var action_group = _get_event_device_group(input_event, input_events)
+			var action_group = _get_available_event_device_group(input_event, input_events)
 			if action_group == -1: continue
 			_update_assigned_inputs_and_button(action_name, action_group, input_event)
 
 func _get_input_event_action_group(input_event: InputEvent, input_events: Array[InputEvent]) -> int:
-	return _get_event_device_group(input_event, input_events)
+	return _get_available_event_device_group(input_event, input_events)
