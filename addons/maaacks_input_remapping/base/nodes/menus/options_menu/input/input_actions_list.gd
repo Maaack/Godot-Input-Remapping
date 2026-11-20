@@ -1,5 +1,5 @@
 @tool
-class_name InputActionsList
+class_name InputActionsTable
 extends Container
 ## Scene to list the input actions out as buttons in a grid format.
 

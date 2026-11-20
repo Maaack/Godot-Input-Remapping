@@ -1,6 +1,6 @@
 @tool
 class_name InputActionsDeviceGroups
-extends InputActionsList
+extends InputActionsTable
 ## Scene to list the input actions out as buttons by input type (keyboard, mouse, gamepad).
 
 const ANY_DEVICE = "Any"

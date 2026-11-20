@@ -6,7 +6,7 @@ const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
 @onready var input_actions_device_groups: InputActionsDeviceGroups = %InputActionsDeviceGroups
-@onready var input_actions_list: InputActionsList = %InputActionsList
+@onready var input_actions_list: InputActionsTable = %InputActionsTable
 @onready var input_actions_tree: InputActionsTree = %InputActionsTree
 @onready var key_deletion_confirmation = %KeyDeletionConfirmation
 @onready var reset_confirmation = %ResetConfirmation
