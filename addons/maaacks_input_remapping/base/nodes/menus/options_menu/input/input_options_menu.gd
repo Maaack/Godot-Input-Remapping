@@ -16,7 +16,7 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 @onready var assignment_placeholder_text = %KeyAssignmentWindow.text
 @onready var reset_button = %ResetButton
 
-@export_enum("Device Groups", "List", "Tree") var remapping_mode : int = 1 :
+@export_enum("Device Table", "Table", "Tree") var remapping_mode : int = 0 :
 	set(value):
 		remapping_mode = value
 		if is_inside_tree():

@@ -40,11 +40,11 @@ horizontal_alignment = 1
 
 [node name="InputActionsDeviceTable" parent="VBoxContainer/InputMappingContainer" unique_id=1224713167 instance=ExtResource("3_jifh0")]
 unique_name_in_owner = true
-visible = false
 layout_mode = 2
 
 [node name="InputActionsTable" parent="VBoxContainer/InputMappingContainer" unique_id=1055016923 instance=ExtResource("4_lf2nw")]
 unique_name_in_owner = true
+visible = false
 layout_mode = 2
 
 [node name="InputActionsTree" parent="VBoxContainer/InputMappingContainer" unique_id=895077546 instance=ExtResource("5_b2whh")]
