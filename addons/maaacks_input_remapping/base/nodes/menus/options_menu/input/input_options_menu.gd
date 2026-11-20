@@ -5,9 +5,9 @@ const ALREADY_ASSIGNED_TEXT : String = "{key} already assigned to {action}."
 const ONE_INPUT_MINIMUM_TEXT : String = "%s must have at least one key or button assigned."
 const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {action}?"
 
+@onready var input_actions_device_groups: InputActionsDeviceGroups = %InputActionsDeviceGroups
 @onready var input_actions_list: InputActionsList = %InputActionsList
 @onready var input_actions_tree: InputActionsTree = %InputActionsTree
-@onready var input_actions_device_groups: InputActionsDeviceGroups = %InputActionsDeviceGroups
 @onready var key_deletion_confirmation = %KeyDeletionConfirmation
 @onready var reset_confirmation = %ResetConfirmation
 @onready var one_input_minimum_message = %OneInputMinimumMessage
@@ -16,23 +16,23 @@ const KEY_DELETION_TEXT : String = "Are you sure you want to remove {key} from {
 @onready var assignment_placeholder_text = %KeyAssignmentWindow.text
 @onready var reset_button = %ResetButton
 
-@export_enum("List", "Tree", "Device Groups") var remapping_mode : int = 0 :
+@export_enum("Device Groups", "List", "Tree") var remapping_mode : int = 1 :
 	set(value):
 		remapping_mode = value
 		if is_inside_tree():
+			input_actions_list.hide()
+			input_actions_tree.hide()
+			input_actions_device_groups.hide()
 			match(remapping_mode):
 				0:
-					input_actions_list.show()
-					input_actions_tree.hide()
-					input_actions_device_groups.hide()
+					active_menu = input_actions_device_groups
 				1:
-					input_actions_list.hide()
-					input_actions_tree.show()
-					input_actions_device_groups.hide()
+					active_menu = input_actions_list
 				2:
-					input_actions_list.hide()
-					input_actions_tree.hide()
-					input_actions_device_groups.show()
+					active_menu = input_actions_tree
+			active_menu.show()
+
+var active_menu : Control
 
 func _ready() -> void:
 	AppSettings.set_from_config()
@@ -46,13 +46,7 @@ func _ready() -> void:
 func _add_action_event() -> void:
 	var last_input_event = key_assignment_window.last_input_event
 	var last_input_readable_name = key_assignment_window.last_input_text
-	match(remapping_mode):
-		0:
-			input_actions_list.add_action_event(last_input_readable_name, last_input_event)
-		1:
-			input_actions_tree.add_action_event(last_input_readable_name, last_input_event)
-		2:
-			input_actions_device_groups.add_action_event(last_input_readable_name, last_input_event)
+	active_menu.add_action_event(last_input_readable_name, last_input_event)
 
 func _remove_action_event(item : TreeItem) -> void:
 	input_actions_tree.remove_action_event(item)
@@ -108,9 +102,7 @@ func _on_input_actions_list_button_clicked(action_name, readable_input_name, acc
 
 func reset_inputs() -> void:
 	AppSettings.reset_to_default_inputs()
-	input_actions_list.reset()
-	input_actions_tree.reset()
-	input_actions_device_groups.reset()
+	active_menu.reset()
 
 func _on_reset_confirmation_confirmed() -> void:
 	reset_inputs()
