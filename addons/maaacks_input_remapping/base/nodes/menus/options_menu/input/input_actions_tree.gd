@@ -116,11 +116,11 @@ func _build_ui_tree() -> void:
 		var readable_name : String = _get_action_readable_name(action_name)
 		_add_action_as_tree_item(readable_name, action_name, input_events)
 
-func _assign_input_event(input_event : InputEvent, action_name : String) -> void:
+func _add_assigned_input_event(input_event : InputEvent, action_name : String) -> void:
 	assigned_input_events[InputEventHelper.get_text(input_event)] = action_name
 		
 func _assign_input_event_to_action(input_event : InputEvent, action_name : String) -> void:
-	_assign_input_event(input_event, action_name)
+	_add_assigned_input_event(input_event, action_name)
 	InputMap.action_add_event(action_name, input_event)
 	var action_events = InputMap.action_get_events(action_name)
 	AppSettings.set_config_input_events(action_name, action_events)
@@ -142,7 +142,7 @@ func _build_assigned_input_events() -> void:
 	for action_name in action_names:
 		var input_events = InputMap.action_get_events(action_name)
 		for input_event in input_events:
-			_assign_input_event(input_event, action_name)
+			_add_assigned_input_event(input_event, action_name)
 
 func _get_action_for_input_event(input_event : InputEvent) -> String:
 	if InputEventHelper.get_text(input_event) in assigned_input_events:
