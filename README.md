@@ -1,4 +1,4 @@
-![Package Icon](/addons/maaacks_input_remapping/media/input_remapping-icon-black-transparent-256x256.png)  
+![Package Icon](/media/input_remapping-icon-black-transparent-256x256.png)  
 
 # Godot Input Remapping
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Maaack/Godot-Input-Remapping)
@@ -11,16 +11,17 @@ For *Godot 4.7* (4.4+ compatible)
 
 [Example on itch.io](https://maaack.itch.io/godot-game-template) of *[Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template)*, which includes additional features.
 
-
 ## Objective
 
 Setup an input remapping menu in about 5 minutes.
 
 This addon plugs into an existing project. It is game agnostic (2D or 3D) and can work with multiple target resolutions, up to 4k and down to 640x360. It's meant to cover the needs for a typical game jam, while remaining scalable and extensible enough to support commercial games.
 
+This addon was originally made for Godot Wild Jam, and shares a no AI/LLM-gen policy. Please open an [issue](https://github.com/Maaack/Godot-Input-Remapping/issues) if there is a violation.  
+
 ### Extras or Components
 
-Users that want additional features can try [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template) or other options from the [plugin suite](/addons/maaacks_input_remapping/docs/PluginSuite.md).  
+Users that want additional features can try [Maaack's Game Template](https://github.com/Maaack/Godot-Game-Template) or other options from the [plugin suite](/docs/PluginSuite.md).  
 
 ## Installation
 
@@ -41,45 +42,44 @@ Conflicts that are safe to ignore:
 8.  Enable the plugin from the **Project > Project Settings > Plugins** tab.  
     1.  If it's enabled for the first time, the setup wizard will start.  
     2.  Close the window behind it and complete the setup wizard.  
-9.  Continue with the [Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md).
+9.  Continue with the [Basic Setup](/docs/BasicSetup.md).
 
 ## Usage
 
-[Basic Setup](/addons/maaacks_input_remapping/docs/BasicSetup.md) is done through the setup wizard at **Project > Tools > Run Maaack's Input Remapping Setup...**.  
+[Basic Setup](/docs/BasicSetup.md) is done through the setup wizard at **Project > Tools > Run Maaack's Input Remapping Setup...**.  
 
 As part of setup, example scenes are copied out of `/addons/` into a desired folder (project root by default). These can be edited to fit requirements.
 
 ### More Documentation
 
-[Input Icon Mapping](/addons/maaacks_input_remapping/docs/InputIconMapping.md)  
-[Joypad Inputs](/addons/maaacks_input_remapping/docs/JoypadInputs.md)  
-[How Parts Work](/addons/maaacks_input_remapping/docs/HowPartsWork.md)  
-[Automatic Updating](/addons/maaacks_input_remapping/docs/AutomaticUpdating.md)  
+[Input Remapping Menus](/docs/InputRemappingMenus.md)  
+[Input Icon Mapping](/docs/InputIconMapping.md)  
+[Joypad Inputs](/docs/JoypadInputs.md)  
+[How Parts Work](/docs/HowPartsWork.md)  
+[Automatic Updating](/docs/AutomaticUpdating.md)  
 
 ## Media
 
 ### Videos
 
 [![Quick Intro Video](https://img.youtube.com/vi/U9CB3vKINVw/hqdefault.jpg)](https://youtu.be/U9CB3vKINVw)  
-[More Videos](/addons/maaacks_input_remapping/docs/Videos.md)
+[More Videos](/docs/Videos.md)
 
 ### Screenshots
 
-![Key Rebinding](/addons/maaacks_input_remapping/media/screenshot-6-input-list-3.png)  
-![Key Rebinding Small Icons](/addons/maaacks_input_remapping/media/screenshot-6-input-list-2.png)  
-![Key Rebinding Input Tree](/addons/maaacks_input_remapping/media/screenshot-6-input-tree-4.png)  
-[More Screenshots](/addons/maaacks_input_remapping/docs/Screenshots.md)  
+![Key Rebinding](/media/screenshot-6-input-list-3.png)  
+![Key Rebinding Small Icons](/media/screenshot-6-input-list-2.png)  
+![Key Rebinding Input Tree](/media/screenshot-6-input-tree-4.png)  
+[More Screenshots](/docs/Screenshots.md)  
 
 ## Featured Games
 
-| HeartFix Express | Baking Godium | Rent Seek Kill |  
+| Crumbling Castle | Dungeon Bodega Simulator | Lucky Break |  
 | :-------:| :-------: | :-------: |
-| ![HeartFix Express](/addons/maaacks_input_remapping/media/thumbnail-game-heartfix-express.png) | ![Baking Godium](/addons/maaacks_input_remapping/media/thumbnail-game-baking-godium.png) | ![Rent-Seek-Kill](/addons/maaacks_input_remapping/media/thumbnail-game-rent-seek-kill.png) |
-|  [Find on Steam](https://store.steampowered.com/app/3983290/HeartFix_Express_Demo/)  | [Play on itch.io](https://maaack.itch.io/baking-godium) | [Play on itch.io](https://xandruher.itch.io/rent-seek-kill)  |
+| ![Crumbling Castle](/media/thumbnail-game-crumbling-castle.png) | ![Dungeon Bodega Simulator](/media/thumbnail-game-dungeon-bodega-simulator.png) | ![Lucky Break](/media/thumbnail-game-lucky-break.png) |
+| [Play on itch.io](https://maaack.itch.io/crumbling-castle) |  [Play on Steam](https://store.steampowered.com/app/3458180/Dungeon_Bodega_Simulator/)  | [Play on Steam](https://store.steampowered.com/app/4155880/Lucky_Break/)  |
 
-
-[All Shared Games](/addons/maaacks_input_remapping/docs/GamesMade.md)  
-
+[All Shared Games](/docs/GamesMade.md)  
 
 ## Community
 
